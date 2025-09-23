@@ -124,6 +124,22 @@ test('blog_api succeeds with status code 204 if id is valid', async () => {
   assert.strictEqual(blogAtEnd.length, helper.initialBlogs.length - 1)
 })
 
+test('blog_api update a specific blog', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogToUpdate = blogsAtStart[0]
+  blogToUpdate.likes += 1
+
+  await api
+    .put(`/api/blogs/${blogToUpdate.id}`)
+    .send(blogToUpdate)
+    .expect(200)
+
+  const blogsAtEnd = await helper.blogsInDb()
+  const updatedBlog = blogsAtEnd.find(b => b.id === blogToUpdate.id)
+
+  assert.strictEqual(updatedBlog.likes, blogToUpdate.likes)
+})
+
 after(async () => {
   await mongoose.connection.close()
 })
