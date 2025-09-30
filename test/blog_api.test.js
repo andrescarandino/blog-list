@@ -5,7 +5,6 @@ const app = require('../app')
 const assert = require('node:assert')
 const Blog = require('../models/blog')
 const helper = require('./test_helper')
-const { log } = require('node:console')
 
 const api = supertest(app)
 
