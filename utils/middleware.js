@@ -1,5 +1,17 @@
 const logger = require('./logger')
 
+const tokenExtractor = (request, response, next) => {
+  const authorization = request.get('authorization')
+  if (authorization && authorization.startsWith('Bearer ')) {
+    request.token = authorization.replace('Bearer ', '')
+    console.log(request.token);
+    
+  } else {
+    request.token = null
+  }
+  next()
+}
+
 const requestLogger = (request, response, next) => {
   logger.info('method:', request.method);
   logger.info('path:', request.path);
@@ -18,6 +30,8 @@ const errorHandler = (error, request, response, next) => {
     return response.status(400).send({ error: 'malformatted id' })
   }else if(error.name === 'ValidationError'){
     return response.status(400).json({ error: error.message })
+  }else if(error.name === 'JsonWebTokenError'){
+    return response.status(401).json({ error: error.message })
   }
   next(error)
 }
@@ -25,5 +39,6 @@ const errorHandler = (error, request, response, next) => {
 module.exports = {
     requestLogger,
     unknownEndpoint,
-    errorHandler
+    errorHandler,
+    tokenExtractor
 }
