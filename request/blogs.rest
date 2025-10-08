@@ -1,14 +1,15 @@
 ### POST
 POST http://localhost:3003/api/blogs/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFuZHJlcyIsImlkIjoiNjhkZDAyM2RiMDdjZDU5ZDYzNWIzODZhIiwiaWF0IjoxNzU5Nzc1Njc0fQ.knG0vNBcMvKcXfdrhGkFbHCIeyqIh-3lVS7LOx18iO0
+
 
 {
-  "title": "blogs test",
+  "title": "",
   "author": "AndresCarandino",
   "url": "www.holablog.com",
   "likes": 10
 }
 
 ###Delete
-DELETE  http://localhost:3003/api/blogs/68e016109ffcddb96dd3659a
+DELETE  http://localhost:3003/api/blogs/68e40be1095d5dfdcbc9dc81
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Inp1cmRvIiwiaWQiOiI2OGU0MGU3Yjg1NzQwNzBhNDJiMTYzMjkiLCJpYXQiOjE3NTk3NzY0NjR9.-re_c51WrI64jRYlb3Wy22kBBkE6iOmkL4b_wjAzd8g
