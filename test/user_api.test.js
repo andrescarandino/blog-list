@@ -1,4 +1,4 @@
-const { test, after, beforeEach } = require('node:test')
+const { test, after, beforeEach, before } = require('node:test')
 const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../app')
@@ -7,14 +7,20 @@ const assert = require('node:assert')
 const User = require('../models/user')
 const helper = require('./test_helper')
 const bcrypt = require('bcrypt')
-const { log } = require('node:console')
+const Blog = require('../models/blog')
+
+
+before(async () => {
+  await User.deleteMany({})
+  await Blog.deleteMany({})
+})
 
 beforeEach(async () => {
     await User.deleteMany({})
 
     const passwordHash = await bcrypt.hash('sekret', 10)
     const rootUser = new User({ username: 'root', passwordHash })
-    await rootUser.save()
+    await rootUser.save() 
 })
 
 test('creation succeds', async () => {
@@ -33,6 +39,8 @@ test('creation succeds', async () => {
         .expect('Content-Type', /application\/json/)
 
     const usersAtEnd = await helper.usersInBd()
+    console.log(usersAtEnd, usersAtStart);
+    
     assert.strictEqual(usersAtEnd.length, usersAtStart.length + 1)
 
     const usernames = usersAtEnd.map(u => u.username)
