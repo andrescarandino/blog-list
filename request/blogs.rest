@@ -13,3 +13,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFuZ
 ###Delete
 DELETE  http://localhost:3003/api/blogs/68e40be1095d5dfdcbc9dc81
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Inp1cmRvIiwiaWQiOiI2OGU0MGU3Yjg1NzQwNzBhNDJiMTYzMjkiLCJpYXQiOjE3NTk3NzY0NjR9.-re_c51WrI64jRYlb3Wy22kBBkE6iOmkL4b_wjAzd8g
+
+### UPDATE
+PUT http://localhost:3003/api/blogs/68f6834bd5807f0cc6eeb9b8
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFuZHJlcyIsImlkIjoiNjhkZDAyM2RiMDdjZDU5ZDYzNWIzODZhIiwiaWF0IjoxNzYxNjc1ODk1fQ.SSgD_vfJUEBxwJL195QsEN0cibUNiglaRF0Wvhz9uOQ
+
+{
+"title": "bbbbbb",
+"author": "assssss",
+"url": "asdasdasdsa",
+"likes": 2,
+"user": {
+"username": "andres",
+"name": "andres carandino",
+"id": "68dd023db07cd59d635b386a"
+}
+}
